@@ -7,7 +7,15 @@ repo_url = "https://github.com/chariot-build"
 
 nav = [
   { "Introduction" = "index.md" },
+  { "Installation" = "installation.md" },
+  { "Configuration" = "configuration.md" },
+  { "Sources" = "sources.md" },
+  { "Packages" = "packages.md" },
   { "Scripts" = "scripts.md" },
+  { "Caching" = "caching.md" },
+  { "Root Filesystem" = "rootfs.md" },
+  { "Editor Setup" = "editor-setup.md" },
+  { "CLI Reference" = "cli.md" },
 ]
 
 [project.theme]
