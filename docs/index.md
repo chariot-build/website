@@ -22,7 +22,6 @@ isolated containers, and caches every step by content hash so that nothing is ev
 - Parallel package building with a shared job budget
 - Flexible Lua based config format
 - Custom rootfs support
-- Optimized for disk space using hardlinks and overlayfs
 - Hash based package invalidation
 
 ## Concepts
