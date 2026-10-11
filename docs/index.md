@@ -26,29 +26,29 @@ isolated containers, and caches every step by content hash so that nothing is ev
 
 ## Concepts
 
-| Concept                                           | What it is                                                                                                   |
-| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [Source](sources.md)                              | Something to build from: an archive, a git revision or a local directory, optionally patched and prepared.    |
-| [Package](packages.md)                            | Software built to run on the system you are building. Declared with `Package`.                                |
-| [Tool](packages.md#tools-vs-packages)             | Software built to run on your machine so that other builds can use it, such as a compiler or `nasm`. Declared with `Tool`. |
-| [Native package](packages.md#dependencies)        | A package that comes from the rootfs distribution itself, referenced by name as a plain string.               |
-| [Script](scripts.md)                              | The `prepare`, `configure`, `build` and `install` snippets that do the actual work inside the container.       |
-| [Rootfs](rootfs.md)                               | The base filesystem every build runs in, described by a hash pinned manifest and managed by Chariot.          |
-| [Store and ledger](caching.md)                    | Where build results live and how Chariot knows a result is still valid.                                       |
-| [Profile](configuration.md#options-and-profiles)  | One permutation of target architecture and user defined options.                                              |
+| Concept                                          | What it is                                                                                                                 |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| [Source](sources.md)                             | Something to build from: an archive, a git revision or a local directory, optionally patched and prepared.                 |
+| [Package](packages.md)                           | Software built to run on the system you are building. Declared with `Package`.                                             |
+| [Tool](packages.md#tools-vs-packages)            | Software built to run on your machine so that other builds can use it, such as a compiler or `nasm`. Declared with `Tool`. |
+| [Native package](packages.md#dependencies)       | A package that comes from the rootfs distribution itself, referenced by name as a plain string.                            |
+| [Script](scripts.md)                             | The `prepare`, `configure`, `build` and `install` snippets that do the actual work inside the container.                   |
+| [Rootfs](rootfs.md)                              | The base filesystem every build runs in, described by a hash pinned manifest and managed by Chariot.                       |
+| [Store and ledger](caching.md)                   | Where build results live and how Chariot knows a result is still valid.                                                    |
+| [Profile](configuration.md#options-and-profiles) | One permutation of target architecture and user defined options.                                                           |
 
 ## CLI Quick Reference
 
 Every build related command needs `--arch` (or `CHARIOT_ARCH`) to know what target architecture to
 build for. See the [CLI reference](cli.md) for all commands and flags.
 
-| Command                                                      | What it does                                                            |
-| ------------------------------------------------------------ | ----------------------------------------------------------------------- |
-| `chariot build --arch <arch> [--tool] <packages>...`          | Build the given packages                                                |
-| `chariot install --arch <arch> [--tool] <packages>... <dest>` | Build the given packages and install them into `<dest>`                 |
-| `chariot lookup --arch <arch> [--tool] <name>`                | Print the store path of an already built package, or exit `1`           |
-| `chariot exec --arch <arch> [options] <script>`               | Run a command inside a build environment                                |
-| `chariot lsp --arch <arch> clangd <package>`                  | Run a language server inside a package's build environment              |
+| Command                                                       | What it does                                                  |
+| ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `chariot build --arch <arch> [--tool] <packages>...`          | Build the given packages                                      |
+| `chariot install --arch <arch> [--tool] <packages>... <dest>` | Build the given packages and install them into `<dest>`       |
+| `chariot lookup --arch <arch> [--tool] <name>`                | Print the store path of an already built package, or exit `1` |
+| `chariot exec --arch <arch> [options] <script>`               | Run a command inside a build environment                      |
+| `chariot lsp --arch <arch> clangd <package>`                  | Run a language server inside a package's build environment    |
 
 ## Quick Start Guide
 
@@ -57,7 +57,7 @@ with two files in it.
 
 ### 1. Declare the rootfs
 
-`chariot_config.toml` is the entry point of a Chariot project. Its directory is the *project root*
+`chariot_config.toml` is the entry point of a Chariot project. Its directory is the _project root_
 that all relative paths are resolved against. The only required section is the rootfs that builds
 run in:
 

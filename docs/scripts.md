@@ -22,7 +22,7 @@ read-only, the designated directories for work are accessible via
 [environment variables](#environment-variables).
 
 The container gets fresh user, PID and mount namespaces, and scripts run as an unprivileged user
-rather than as root, so they cannot see or touch processes and mounts on the host. They *can* reach
+rather than as root, so they cannot see or touch processes and mounts on the host. They _can_ reach
 the network, which is what makes it possible to fetch sources, but a build that downloads things
 itself will not be reproducible. Declare a [source](sources.md) instead.
 
@@ -30,17 +30,17 @@ itself will not be reproducible. Declare a [source](sources.md) instead.
 
 Chariot exposes various things into the runtime using environment variables.
 
-| Variable      | Availability                    | Description                                                                      |
-| ------------- | ------------------------------- | -------------------------------------------------------------------------------- |
-| `PARALLELISM` | Everywhere                      | Ideal number of threads to use for parallel builds.                              |
-| `SOURCES_DIR` | Everywhere                      | Path to the directory where sources are available.                                |
-| `SYSROOT_DIR` | Everywhere                      | Path to the sysroot containing target package dependencies.                       |
-| `SOURCE_DIR`  | `prepare`, and any package step when the package declares a `source` | Path to the source directory.         |
-| `BUILD_DIR`   | `configure`, `build`, `install` | Path to the build directory.                                                      |
-| `INSTALL_DIR` | `install`                       | Path to the install directory.                                                    |
-| `PREFIX`      | `configure`, `build`, `install` | Install prefix the package should install itself under.                           |
-| `ARCH`        | `configure`, `build`, `install` | Target architecture for packages, host architecture for tools.                    |
-| `HOME`        | Everywhere                      | Points at the script's working directory.                                         |
+| Variable      | Availability                                                         | Description                                                    |
+| ------------- | -------------------------------------------------------------------- | -------------------------------------------------------------- |
+| `PARALLELISM` | Everywhere                                                           | Ideal number of threads to use for parallel builds.            |
+| `SOURCES_DIR` | Everywhere                                                           | Path to the directory where sources are available.             |
+| `SYSROOT_DIR` | Everywhere                                                           | Path to the sysroot containing target package dependencies.    |
+| `SOURCE_DIR`  | `prepare`, and any package step when the package declares a `source` | Path to the source directory.                                  |
+| `BUILD_DIR`   | `configure`, `build`, `install`                                      | Path to the build directory.                                   |
+| `INSTALL_DIR` | `install`                                                            | Path to the install directory.                                 |
+| `PREFIX`      | `configure`, `build`, `install`                                      | Install prefix the package should install itself under.        |
+| `ARCH`        | `configure`, `build`, `install`                                      | Target architecture for packages, host architecture for tools. |
+| `HOME`        | Everywhere                                                           | Points at the script's working directory.                      |
 
 Your own variables come from two places, with the package winning on collisions:
 

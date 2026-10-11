@@ -66,18 +66,18 @@ local coreutils = Package {
 }
 ```
 
-| Field                  | Type                             | Required | Description                                                                                             |
-| ---------------------- | -------------------------------- | -------- | ------------------------------------------------------------------------------------------------------- |
-| `name`                 | string                           | yes      | Package name. Must not contain whitespace.                                                               |
-| `version`              | string                           | yes      | Upstream version. Must not contain whitespace, `-` or `_`.                                               |
-| `revision`             | number                           | yes      | Packaging revision, starting at `1`. See below.                                                          |
-| `source`               | source reference                 | no       | The source to build, available to scripts as `SOURCE_DIR`.                                               |
-| `dependencies`         | array                            | no       | Everything needed at build time. See [Dependencies](#dependencies).                                      |
-| `runtime_dependencies` | array of package references      | no       | Packages required to run this one. See [Runtime dependencies](#runtime-dependencies).                    |
-| `env`                  | map of string to string or number | no      | Extra environment variables for all of this package's scripts.                                           |
-| `configure`            | string                           | no       | First [script](scripts.md).                                                                              |
-| `build`                | string                           | no       | Second [script](scripts.md).                                                                             |
-| `install`              | string                           | yes      | Final [script](scripts.md). Everything it writes to `INSTALL_DIR` becomes the package.                   |
+| Field                  | Type                              | Required | Description                                                                            |
+| ---------------------- | --------------------------------- | -------- | -------------------------------------------------------------------------------------- |
+| `name`                 | string                            | yes      | Package name. Must not contain whitespace.                                             |
+| `version`              | string                            | yes      | Upstream version. Must not contain whitespace, `-` or `_`.                             |
+| `revision`             | number                            | yes      | Packaging revision, starting at `1`. See below.                                        |
+| `source`               | source reference                  | no       | The source to build, available to scripts as `SOURCE_DIR`.                             |
+| `dependencies`         | array                             | no       | Everything needed at build time. See [Dependencies](#dependencies).                    |
+| `runtime_dependencies` | array of package references       | no       | Packages required to run this one. See [Runtime dependencies](#runtime-dependencies).  |
+| `env`                  | map of string to string or number | no       | Extra environment variables for all of this package's scripts.                         |
+| `configure`            | string                            | no       | First [script](scripts.md).                                                            |
+| `build`                | string                            | no       | Second [script](scripts.md).                                                           |
+| `install`              | string                            | yes      | Final [script](scripts.md). Everything it writes to `INSTALL_DIR` becomes the package. |
 
 Chariot does not use `revision` for anything itself. Rebuilds are decided by content hashing, so a
 revision bump is not how you force one. It exists because it ends up in the produced package's
@@ -97,12 +97,12 @@ local coreutils = Package { name = "coreutils", dependencies = { mlibc }, ... }
 
 The `dependencies` array mixes four kinds of entry, distinguished by what you put in it:
 
-| Entry                      | Kind            | Effect                                                                                          |
-| -------------------------- | --------------- | ----------------------------------------------------------------------------------------------- |
-| `"build-essential"`        | Native package  | Installed into the container from the rootfs distribution.                                      |
-| a `Tool` reference         | Host tool       | Built first, then made available to run during the build.                                       |
-| a `Package` reference      | Target package  | Built first, then installed into the sysroot at `SYSROOT_DIR`.                                   |
-| a `Source` reference       | Source          | Fetched and made available read-only under `SOURCES_DIR`.                                       |
+| Entry                 | Kind           | Effect                                                         |
+| --------------------- | -------------- | -------------------------------------------------------------- |
+| `"build-essential"`   | Native package | Installed into the container from the rootfs distribution.     |
+| a `Tool` reference    | Host tool      | Built first, then made available to run during the build.      |
+| a `Package` reference | Target package | Built first, then installed into the sysroot at `SYSROOT_DIR`. |
+| a `Source` reference  | Source         | Fetched and made available read-only under `SOURCES_DIR`.      |
 
 ```lua
 dependencies = {

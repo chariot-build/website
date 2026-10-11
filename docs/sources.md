@@ -24,14 +24,14 @@ local coreutils_source = Source {
 
 `Source` returns a reference used by packages. Source names must be unique across the project.
 
-| Field          | Type                       | Required | Description                                                                                           |
-| -------------- | -------------------------- | -------- | ----------------------------------------------------------------------------------------------------- |
-| `name`         | string                     | yes      | Unique name. Also the name it appears under in `SOURCES_DIR`.                                          |
-| `base`         | source base                | yes      | Where to get the code: `Archive`, `Git` or `Local`.                                                    |
-| `patches`      | array of strings, paths    | no       | Patch files, relative to the project root, applied in order.                                          |
-| `prepare`      | string                     | no       | A [script](scripts.md) run once on the fetched tree, for example to run `autoreconf`.                 |
-| `dependencies` | array                      | no       | Dependencies available to the `prepare` script. Same forms as a [package's](packages.md#dependencies). |
-| `env`          | map of string to string    | no       | Environment variables for the `prepare` script.                                                       |
+| Field          | Type                    | Required | Description                                                                                            |
+| -------------- | ----------------------- | -------- | ------------------------------------------------------------------------------------------------------ |
+| `name`         | string                  | yes      | Unique name. Also the name it appears under in `SOURCES_DIR`.                                          |
+| `base`         | source base             | yes      | Where to get the code: `Archive`, `Git` or `Local`.                                                    |
+| `patches`      | array of strings, paths | no       | Patch files, relative to the project root, applied in order.                                           |
+| `prepare`      | string                  | no       | A [script](scripts.md) run once on the fetched tree, for example to run `autoreconf`.                  |
+| `dependencies` | array                   | no       | Dependencies available to the `prepare` script. Same forms as a [package's](packages.md#dependencies). |
+| `env`          | map of string to string | no       | Environment variables for the `prepare` script.                                                        |
 
 `name` and `base` may also be given positionally: the first string in the table becomes the name and
 the first table becomes the base. The example above uses that shorthand for `base`, and both forms
@@ -87,7 +87,7 @@ on the next run.
 ## Patches
 
 Patch files are read from the project root at config evaluation time and applied in the listed order
-with `patch -p1`, each on top of the previous result. Because the patch *contents* are hashed rather
+with `patch -p1`, each on top of the previous result. Because the patch _contents_ are hashed rather
 than the file paths, editing a patch invalidates exactly the sources that use it.
 
 ```lua
@@ -120,7 +120,7 @@ build, the tree is writable for this step. See [Scripts](scripts.md) for the ful
 
 ## Using a source
 
-A package names one source as *its* source, and may depend on any number of others:
+A package names one source as _its_ source, and may depend on any number of others:
 
 ```lua
 Package {

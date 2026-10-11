@@ -138,26 +138,26 @@ patch = "patch"
 clangd = "clangd"
 ```
 
-| Key                      | Description                                                                                                     |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------- |
-| `manifest_version`       | The manifest format version. A manifest written for a version your Chariot does not expect is rejected rather than misinterpreted. |
-| `directories`            | Directories created in the rootfs before setup runs.                                                            |
-| `files`                  | Empty files created in the rootfs, along with their parent directories.                                         |
-| `archives`               | Base archives unpacked into the rootfs, in order. See below.                                                     |
-| `commands.setup`         | Shell command run once as root inside the fresh rootfs. `@ROOT_PACKAGES@` is replaced with `packages.root`, space separated. |
-| `commands.pkg_download`  | Shell command that downloads one native package. `@PACKAGE@` is replaced with its name. Runs as root in the rootfs, so downloads can be kept there. |
-| `commands.pkg_install`   | Shell command that installs one downloaded native package. `@PACKAGE@` is replaced with its name. Runs as root with the new package set as the writable layer, so everything it writes becomes the set. |
-| `packages.root`          | The base packages installed into the rootfs during setup. Available to every build.                              |
-| `packages.binary_map`    | Map from binary name to the package that provides it. See below.                                                  |
+| Key                     | Description                                                                                                                                                                                             |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `manifest_version`      | The manifest format version. A manifest written for a version your Chariot does not expect is rejected rather than misinterpreted.                                                                      |
+| `directories`           | Directories created in the rootfs before setup runs.                                                                                                                                                    |
+| `files`                 | Empty files created in the rootfs, along with their parent directories.                                                                                                                                 |
+| `archives`              | Base archives unpacked into the rootfs, in order. See below.                                                                                                                                            |
+| `commands.setup`        | Shell command run once as root inside the fresh rootfs. `@ROOT_PACKAGES@` is replaced with `packages.root`, space separated.                                                                            |
+| `commands.pkg_download` | Shell command that downloads one native package. `@PACKAGE@` is replaced with its name. Runs as root in the rootfs, so downloads can be kept there.                                                     |
+| `commands.pkg_install`  | Shell command that installs one downloaded native package. `@PACKAGE@` is replaced with its name. Runs as root with the new package set as the writable layer, so everything it writes becomes the set. |
+| `packages.root`         | The base packages installed into the rootfs during setup. Available to every build.                                                                                                                     |
+| `packages.binary_map`   | Map from binary name to the package that provides it. See below.                                                                                                                                        |
 
 Each entry in `archives` takes:
 
-| Key           | Required | Description                                                                               |
-| ------------- | -------- | ----------------------------------------------------------------------------------------- |
-| `url`         | yes      | Where to download the tar archive from.                                                   |
-| `hash`        | yes      | SHA-256 of the downloaded file, verified before unpacking.                                |
-| `compression` | yes      | `xz` or `zstd`.                                                                           |
-| `subdir`      | no       | Unpack only this subdirectory of the archive into the rootfs instead of the whole thing.  |
+| Key           | Required | Description                                                                              |
+| ------------- | -------- | ---------------------------------------------------------------------------------------- |
+| `url`         | yes      | Where to download the tar archive from.                                                  |
+| `hash`        | yes      | SHA-256 of the downloaded file, verified before unpacking.                               |
+| `compression` | yes      | `xz` or `zstd`.                                                                          |
+| `subdir`      | no       | Unpack only this subdirectory of the archive into the rootfs instead of the whole thing. |
 
 ### Binaries Chariot needs
 
@@ -165,15 +165,15 @@ Chariot uses the binary map to install the tooling it needs for its own work, on
 putting it in every build environment. A manifest that cannot provide one of these fails immediately
 with `This rootfs manifest is missing a required package mapping for the ... binary`:
 
-| Binary      | Used for                                  |
-| ----------- | ----------------------------------------- |
-| `wget`      | Downloading archives                      |
-| `sha256sum` | Verifying archive checksums               |
-| `bsdtar`    | Extracting tar archives                   |
-| `unzip`     | Extracting zip archives                   |
-| `git`       | Fetching git sources                      |
-| `patch`     | Applying patches                          |
-| `clangd`    | Only for `chariot lsp clangd`             |
+| Binary      | Used for                      |
+| ----------- | ----------------------------- |
+| `wget`      | Downloading archives          |
+| `sha256sum` | Verifying archive checksums   |
+| `bsdtar`    | Extracting tar archives       |
+| `unzip`     | Extracting zip archives       |
+| `git`       | Fetching git sources          |
+| `patch`     | Applying patches              |
+| `clangd`    | Only for `chariot lsp clangd` |
 
 ### What the rootfs itself must contain
 
@@ -187,7 +187,7 @@ It must contain:
 
 It must contain these paths, which the container runtime mounts over or into:
 
-| Kind        | Paths                                                                                                 |
-| ----------- | ----------------------------------------------------------------------------------------------------- |
-| Files       | `/dev/tty`, `/dev/null`, `/dev/zero`, `/dev/full`, `/dev/random`, `/dev/urandom`, `/etc/resolv.conf`   |
-| Directories | `/dev/pts`, `/dev/shm`, `/run`, `/tmp`, `/proc`, `/chariot`                                            |
+| Kind        | Paths                                                                                                |
+| ----------- | ---------------------------------------------------------------------------------------------------- |
+| Files       | `/dev/tty`, `/dev/null`, `/dev/zero`, `/dev/full`, `/dev/random`, `/dev/urandom`, `/etc/resolv.conf` |
+| Directories | `/dev/pts`, `/dev/shm`, `/run`, `/tmp`, `/proc`, `/chariot`                                          |

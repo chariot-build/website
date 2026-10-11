@@ -35,19 +35,19 @@ The cache gitignores itself, so it is safe to leave inside a repository.
 
 Every step produces a store entry named `<category>-<hash>`:
 
-| Category         | What it holds                                                  |
-| ---------------- | -------------------------------------------------------------- |
-| `source.base`    | A fetched archive, git checkout or copied local directory      |
-| `source.patch`   | The patched tree                                               |
-| `source.prepare` | The tree after the `prepare` script ran                        |
-| `install`        | What a package's `install` script wrote                        |
-| `pkg`            | The finished binary package                                    |
+| Category         | What it holds                                             |
+| ---------------- | --------------------------------------------------------- |
+| `source.base`    | A fetched archive, git checkout or copied local directory |
+| `source.patch`   | The patched tree                                          |
+| `source.prepare` | The tree after the `prepare` script ran                   |
+| `install`        | What a package's `install` script wrote                   |
+| `pkg`            | The finished binary package                               |
 
 Lookups go through two hashes:
 
 1. The **input hash**, computed from the config alone: the scripts, environment, dependencies,
    architecture, prefix, rootfs manifest hash and config format version.
-2. The **effective hash**, computed from the actual *content* of the inputs once they are built: the
+2. The **effective hash**, computed from the actual _content_ of the inputs once they are built: the
    real bytes of the sources and dependency packages.
 
 The ledger maps input hash to effective hash, and the store is keyed on the effective hash. The
@@ -61,16 +61,16 @@ recompiling.
 
 ### What causes a rebuild
 
-| Change                                                              | Effect                                              |
-| ------------------------------------------------------------------- | --------------------------------------------------- |
-| A `configure`, `build`, `install` or `prepare` script               | That package or source rebuilds                     |
-| A package's `env`, native dependencies or dependency set            | That package rebuilds                               |
-| A source URL, checksum, revision, patch content, or local directory | That source is re-fetched, dependants rebuild       |
-| `version`, `revision` or `runtime_dependencies`                     | The package is repackaged, not rebuilt              |
-| `target_prefix`, `global_environment_variables`, `global_native_packages` | Everything rebuilds                           |
-| `--arch` or `-o` options                                            | A different [profile](configuration.md#options-and-profiles), built separately |
-| The rootfs manifest hash                                            | Everything rebuilds                                 |
-| A new Chariot release that bumps the config format version          | Everything rebuilds                                 |
+| Change                                                                    | Effect                                                                         |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| A `configure`, `build`, `install` or `prepare` script                     | That package or source rebuilds                                                |
+| A package's `env`, native dependencies or dependency set                  | That package rebuilds                                                          |
+| A source URL, checksum, revision, patch content, or local directory       | That source is re-fetched, dependants rebuild                                  |
+| `version`, `revision` or `runtime_dependencies`                           | The package is repackaged, not rebuilt                                         |
+| `target_prefix`, `global_environment_variables`, `global_native_packages` | Everything rebuilds                                                            |
+| `--arch` or `-o` options                                                  | A different [profile](configuration.md#options-and-profiles), built separately |
+| The rootfs manifest hash                                                  | Everything rebuilds                                                            |
+| A new Chariot release that bumps the config format version                | Everything rebuilds                                                            |
 
 ## Profiles and reachability
 

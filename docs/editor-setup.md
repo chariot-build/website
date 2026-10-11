@@ -38,7 +38,7 @@ itself.
 
 ## A language server for the code you are building
 
-Editing the *source* of a package is harder than editing the config. The code is built inside a
+Editing the _source_ of a package is harder than editing the config. The code is built inside a
 container, against a sysroot and a cross compiler that do not exist on your host, so a language
 server running on your machine has no idea how to parse it.
 
