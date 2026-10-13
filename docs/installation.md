@@ -6,22 +6,9 @@ icon: lucide/download
 
 ## Requirements
 
-Chariot ships as a single static binary with no runtime dependencies, but the builds it runs need a
-few things from the host:
-
-- **Linux.** Builds run in a container that Chariot sets up itself using user, PID and mount
-  namespaces, so unprivileged user namespaces must be available. Chariot does not need to run as
-  root.
-- **`overlayfs` usable inside a user namespace.** Chariot stacks rootfs package sets, sources and
-  host tools with overlay mounts.
-- **One filesystem.** The rootfs, cache, store, work directories and ledger must all live on the
-  same filesystem. Chariot moves and hardlinks files between them, which cannot cross a filesystem
-  boundary. Both default to the project directory, so this only matters if you point `--cache` or
-  `--rootfs` somewhere else.
-- **Network access.** The rootfs, its packages and your sources are fetched over the network.
-  Build scripts also have network access.
-- **Disk space.** A distribution build keeps every intermediate result, so plan for tens of
-  gigabytes on a real project.
+Chariot ships as a single static binary with no runtime dependencies. However, chariot leverages Linux unshare calls and overlayfs.
+This means Chariot can only run under a Linux kernel with unprivileged user namespaces and overlayfs support.
+Luckily the vast majority of Linux distros compile kernels with support for both by default.
 
 ## Installing Chariot
 
