@@ -4,7 +4,7 @@ icon: lucide/hammer
 
 # Introduction
 
-Chariot is a modern meta build system written in Rust used for building operating system distributions.
+Chariot is a meta-build system written in Rust, used for building/bootstrapping operating systems.
 
 !!! warning
 
@@ -40,7 +40,7 @@ isolated containers, and caches every step by content hash so that nothing is ev
 ## CLI Quick Reference
 
 Every build related command needs `--arch` (or `CHARIOT_ARCH`) to know what target architecture to
-build for. See the [CLI reference](cli.md) for all commands and flags.
+build for. Use `chariot --help` for all commands and flags.
 
 | Command                                                       | What it does                                                  |
 | ------------------------------------------------------------- | ------------------------------------------------------------- |
