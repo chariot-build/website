@@ -169,4 +169,4 @@ once, and `--keep-going` keeps building unrelated packages after a failure inste
 the first one.
 
 To debug a build, `chariot exec --build-env <package>` drops you into the exact environment that
-package builds in. See the [CLI reference](cli.md#chariot-exec).
+package builds in.

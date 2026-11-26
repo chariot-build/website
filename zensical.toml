@@ -15,7 +15,6 @@ nav = [
   { "Caching" = "caching.md" },
   { "Root Filesystem" = "rootfs.md" },
   { "Editor Setup" = "editor-setup.md" },
-  { "CLI Reference" = "cli.md" },
 ]
 
 [project.theme]

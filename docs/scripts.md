@@ -103,4 +103,4 @@ $ chariot exec --arch x86_64 --build-env coreutils --stdin bash
 ```
 
 Adding `-b /build=coreutils` mounts the package's build directory read-only at `/build`, so you can
-inspect the output of a failed build. See the [CLI reference](cli.md#chariot-exec).
+inspect the output of a failed build.
